@@ -1,18 +1,21 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Navbar from "@/components/layout/Navbar"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation";
 import QRCode from "react-qr-code";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import useAutomater, { AutomaterHook } from "@/hooks/useAutomater";
+import useAutomaterContext from "@/hooks/useAutomater";
+import ErrorDialog from "@/components/common/ErrorDialog";
+import { SuccessDialog } from "@/components/common/SuccessDialog";
 
 export default function QRPage(): React.ReactElement {
 
     const {
         qr, isLoading
-    }: AutomaterHook = useAutomater();
+    }: AutomaterHook = useAutomaterContext();
+
 
 
 
@@ -29,23 +32,27 @@ export default function QRPage(): React.ReactElement {
     if (isLoading) {
         return (
             <div className="min-h-screen bg-background">
-                <Navbar />
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <ErrorDialog />
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex flex-col items-center justify-center min-h-[60vh]">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
                         <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-2 text-center px-4">Setting up connection...</h2>
                         <p className="text-green-500 font-bold text-sm sm:text-base text-center px-4">Please wait while we prepare your QR code</p>
-                        <p className="text-muted-foreground text-xs sm:text-sm text-center px-4 mt-2">Reload the page if loading is endless</p>
                     </div>
                 </main>
             </div>
         )
     }
 
+
+
+
+
+
     return (
         <div className="min-h-screen bg-background">
-            <Navbar />
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <ErrorDialog />
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div className="flex flex-col items-center justify-center min-h-[60vh]">
                     {/* Mobile Card Layout */}
                     <div className="md:hidden w-full max-w-md p-8 border border-border rounded-lg">
@@ -95,7 +102,8 @@ export default function QRPage(): React.ReactElement {
                     </div>
                 </div>
             </main>
+
         </div>
     )
 }
-
+    

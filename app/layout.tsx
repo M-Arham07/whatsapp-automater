@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AutomaterProvider } from "@/hooks/useAutomater";
+import Navbar from "@/components/layout/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" enableSystem={true}>
-          {children}
-        </ThemeProvider>
+        <AutomaterProvider>
+          <ThemeProvider attribute="class" enableSystem={true}>
+               <Navbar />
+            {children}
+          </ThemeProvider>
+        </AutomaterProvider>
       </body>
     </html>
   );
