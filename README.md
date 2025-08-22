@@ -34,22 +34,26 @@ cd whatsapp-automater
 ### 2. Install dependencies
 
 ```bash
+cd frontend
+npm install
+cd server
 npm install
 ```
 
 ### 3. Run the WebSocket server
 
 ```bash
+cd server
+# RUN:
 npm run socket
-
 # or
-
-npx nodemon --exec ts-node server/whatsapp-server.ts
+node whatsapp-server.ts
 ```
 
 ### 4. Run the Next.js app
 
 ```bash
+cd frontend
 npm run dev
 ```
 
@@ -65,9 +69,9 @@ Visit [http://localhost:3000](http://localhost:3000) to access the automater.
 ## Usage
 
 1. Open the web page.
-2. Click the **Login** button to display QR code.
+2. Click the **Start Automation** button to display QR code.
 3. Scan the QR code using your WhatsApp app.
-4. Once logged in, use automation features like sending messages.
+4. Once logged in, you will be redirected to setup page to set your desired automation message.
 5. WebSocket ensures live updates of message events.
 
 ---
